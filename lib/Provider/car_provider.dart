@@ -49,14 +49,12 @@ class Products with ChangeNotifier {
       if (extractdata == null) {
         return null;
       }
-      var url2 = Uri.parse(
-          'https://car-rater-default-rtdb.firebaseio.com/product.json');
       final List<Product> _productstoload = [];
       extractdata.forEach((prodid, prodvalue) {
         _productstoload.add(Product(
           id: prodid,
           number: prodvalue['number'],
-          name: prodvalue['Name'],
+          Name: prodvalue['Name'],
           milege: prodvalue['milege'],
           dof: prodvalue['dof'],
         ));
@@ -101,7 +99,7 @@ class Products with ChangeNotifier {
           'https://car-rater-default-rtdb.firebaseio.com/product.json');
       await http.patch(url,
           body: json.encode({
-            'name': editproduct.name,
+            'Name': editproduct.Name,
             'milege': editproduct.milege,
             'dof': editproduct.dof,
             'car_id': editproduct.id,

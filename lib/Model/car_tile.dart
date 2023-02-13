@@ -5,31 +5,30 @@ import 'package:car_rating/Provider/car_provider.dart';
 
 class User_product_tile extends StatelessWidget {
   final String id;
-  final String name;
+  final String number;
+  final String Name;
   final double milege;
   User_product_tile(
     @required this.id,
-    @required this.name,
+    @required this.Name,
     @required this.milege,
+    @required this.number,
   );
   @override
   Widget build(BuildContext context) {
     final scaffold = Scaffold.of(context);
     return ListTile(
-      // leading: CircleAvatar(
-      //   backgroundImage: NetworkImage(ImageUrl),
-      // ),
       title: Column(
         children: [
           Text(
-            id,
+            number,
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 30,
             ),
           ),
           Text(
-            name,
+            Name,
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20.0,

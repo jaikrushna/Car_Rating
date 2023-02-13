@@ -46,9 +46,10 @@ class User_product_screen extends StatelessWidget {
                               itemBuilder: (_, i) => Column(
                                 children: [
                                   User_product_tile(
-                                      snap.items[i].id.toString(),
-                                      snap.items[i].name.toString(),
-                                      snap.items[i].milege),
+                                      snap.items[i].id,
+                                      snap.items[i].Name,
+                                      snap.items[i].milege,
+                                      snap.items[i].number),
                                   Divider(),
                                 ],
                               ),

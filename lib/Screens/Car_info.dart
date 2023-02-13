@@ -20,7 +20,7 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
       Product(id: null, Name: '', milege: 0.0, dof: '', number: '');
   @override
   var _initValues = {
-    'name': '',
+    'Name': '',
     'dof': '',
     'number': '',
     'milege': '',
@@ -36,7 +36,7 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
         _newproduct =
             Provider.of<Products>(context, listen: false).findbyid(editid);
         _initValues = {
-          'name': _newproduct.Name,
+          'Name': _newproduct.Name,
           'dof': _newproduct.dof,
           'milege': _newproduct.milege.toString(),
           'number': _newproduct.number,
@@ -119,7 +119,7 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
                 child: ListView(
                   children: [
                     TextFormField(
-                      initialValue: _initValues['name'],
+                      initialValue: _initValues['Name'],
                       decoration: InputDecoration(labelText: "Name_Of_Car"),
                       textInputAction: TextInputAction.next,
                       onFieldSubmitted: (_) {
@@ -146,7 +146,6 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
                       decoration:
                           InputDecoration(labelText: "Date-Of-Purchase"),
                       textInputAction: TextInputAction.next,
-                      focusNode: _primefocus,
                       onFieldSubmitted: (_) {
                         FocusScope.of(context).requestFocus(_primefocus);
                       },
@@ -171,7 +170,6 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
                       decoration: InputDecoration(labelText: "Milege(km/l)"),
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.number,
-                      focusNode: _primefocus,
                       onFieldSubmitted: (_) {
                         FocusScope.of(context).requestFocus(_primefocus);
                       },
