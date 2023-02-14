@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:car_rating/Provider/car_provider.dart';
 import 'package:car_rating/Model/Product.dart';
+import 'package:car_rating/Provider/Constant.dart';
 
 class Edit_User_Input extends StatefulWidget {
   static const routee = '/Editee';
@@ -17,7 +18,7 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
   final _primefocus2 = FocusNode();
   final _primefocus3 = FocusNode();
   var _newproduct =
-      Product(id: null, Name: '', milege: 0.0, dof: '', number: '');
+      Product(id: null, Name: '', milege: 0.0, dof: 0, number: '');
   @override
   var _initValues = {
     'Name': '',
@@ -37,7 +38,7 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
             Provider.of<Products>(context, listen: false).findbyid(editid);
         _initValues = {
           'Name': _newproduct.Name,
-          'dof': _newproduct.dof,
+          'dof': _newproduct.dof.toString(),
           'milege': _newproduct.milege.toString(),
           'number': _newproduct.number,
         };
@@ -100,7 +101,11 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Edit_Car"),
+        backgroundColor: Colors.black87,
+        title: Padding(
+          padding: const EdgeInsets.only(left: 78.0),
+          child: Text("Edit_Car"),
+        ),
         actions: [
           IconButton(
             onPressed: _Saveform,
@@ -120,7 +125,8 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
                   children: [
                     TextFormField(
                       initialValue: _initValues['Name'],
-                      decoration: InputDecoration(labelText: "Name_Of_Car"),
+                      decoration: kInputDecor.copyWith(
+                          hintText: 'BMW M5 sport', labelText: 'Name Of Model'),
                       textInputAction: TextInputAction.next,
                       onFieldSubmitted: (_) {
                         FocusScope.of(context).requestFocus(_primefocus);
@@ -141,17 +147,21 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
                         );
                       },
                     ),
+                    SizedBox(
+                      height: 15.0,
+                    ),
                     TextFormField(
                       initialValue: _initValues['dof'],
-                      decoration:
-                          InputDecoration(labelText: "Date-Of-Purchase"),
+                      decoration: kInputDecor.copyWith(
+                          hintText: '7', labelText: 'Age Of Car'),
+                      keyboardType: TextInputType.number,
                       textInputAction: TextInputAction.next,
                       onFieldSubmitted: (_) {
                         FocusScope.of(context).requestFocus(_primefocus);
                       },
                       validator: (value) {
                         if (value.isEmpty) {
-                          return "Please enter Date on which car purchased";
+                          return "Please enter age of the car";
                         }
                         return null;
                       },
@@ -160,14 +170,18 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
                           id: _newproduct.id,
                           Name: _newproduct.Name,
                           milege: _newproduct.milege,
-                          dof: value,
+                          dof: int.parse(value),
                           number: _newproduct.number,
                         );
                       },
                     ),
+                    SizedBox(
+                      height: 15.0,
+                    ),
                     TextFormField(
                       initialValue: _initValues['milege'],
-                      decoration: InputDecoration(labelText: "Milege(km/l)"),
+                      decoration: kInputDecor.copyWith(
+                          hintText: '18.0', labelText: 'Milege(km/l)'),
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.number,
                       focusNode: _primefocus,
@@ -196,9 +210,13 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
                         );
                       },
                     ),
+                    SizedBox(
+                      height: 15.0,
+                    ),
                     TextFormField(
                       initialValue: _initValues['number'],
-                      decoration: InputDecoration(labelText: "Number_Plate"),
+                      decoration: kInputDecor.copyWith(
+                          hintText: 'MH14XXXX90', labelText: 'Number_Plate'),
                       textInputAction: TextInputAction.next,
                       onFieldSubmitted: (_) {
                         FocusScope.of(context).requestFocus(_primefocus);

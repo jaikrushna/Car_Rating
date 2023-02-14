@@ -3,6 +3,7 @@ import 'package:car_rating/Screens/Car_List.dart';
 import 'package:car_rating/Screens/Car_info.dart';
 import 'package:provider/provider.dart';
 import 'Provider/car_provider.dart';
+import 'package:car_rating/Screens/Open.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,12 +19,13 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Car_Rating',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primaryColor: Colors.black,
         ),
-        home: User_product_screen(),
+        home: Open(),
         routes: {
           User_product_screen.routee: (ctx) => User_product_screen(),
           Edit_User_Input.routee: (ctx) => Edit_User_Input(),
+          Open.routee: (ctx) => Open(),
         },
       ),
     );

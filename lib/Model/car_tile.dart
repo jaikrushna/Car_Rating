@@ -16,46 +16,61 @@ class User_product_tile extends StatelessWidget {
     @required this.number,
     @required this.dof,
   );
-  // int currtime = int.parse(DateTime.now().toString());
   Color _rang() {
     if ((milege >= 15) && (dof <= 5)) {
-      return Color(0xFF436717);
+      return Color(0x889EF29C);
     } else if ((milege >= 15) && (dof > 5)) {
-      return Color(0xFFFFC200);
+      return Color(0x88F2DA88);
     } else {
-      return Color(0xFFD52B13);
+      return Color(0x66CB2727);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final scaffold = Scaffold.of(context);
+    // final scaffold = Scaffold.of(context);
     return ListTile(
-      title: Column(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+      title: Text(
+        number,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 16,
+        ),
+      ),
+      subtitle:
+          // Padding(
+          // padding: const EdgeInsets.fromLTRB(0.0, 1.0, 50.0, 0.2),
+          // child:
+          Column(
         children: [
-          Text(
-            number,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 30,
-            ),
+          Row(
+            children: [
+              Text("Model: "),
+              Text(
+                Name,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12.0,
+                ),
+              ),
+            ],
           ),
-          Text(
-            Name,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20.0,
-            ),
-          ),
-          Text(
-            milege.toString(),
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 15.0,
-            ),
+          Row(
+            children: [
+              Text("Milege:"),
+              Text(
+                milege.toString(),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 12.0,
+                ),
+              ),
+            ],
           ),
         ],
       ),
+      // ),
       tileColor: _rang(),
       trailing: Container(
         width: 100,

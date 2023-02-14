@@ -5,22 +5,7 @@ import 'dart:convert';
 import 'package:car_rating/Model/Http.dart';
 
 class Products with ChangeNotifier {
-  List<Product> _items = [
-    // Product(
-    //   id: 'C1',
-    //   number: 'MH14FT5510',
-    //   Name: 'Mercedez-Benz',
-    //   milege: 15,
-    //   dof: '7',
-    // ),
-    // Product(
-    //   id: 'C2',
-    //   number: 'MH16FT7480',
-    //   Name: 'Skoda-Rapid',
-    //   milege: 12,
-    //   dof: '3',
-    // )
-  ];
+  List<Product> _items = [];
   List<Product> get items {
     return [..._items];
   }

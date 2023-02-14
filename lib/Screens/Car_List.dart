@@ -1,10 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:car_rating/Model/Product.dart';
 import 'package:provider/provider.dart';
 import 'package:car_rating/Provider/car_provider.dart';
 import 'package:car_rating/Model/car_tile.dart';
-// import 'package:shop_it/Screens/App_Drawer.dart';
 
 class User_product_screen extends StatelessWidget {
   static const routee = '/userproduct';
@@ -14,12 +12,15 @@ class User_product_screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final userproduct = Provider.of<Products>(context);
     return RefreshIndicator(
       onRefresh: () => _refreshProd(context),
       child: Scaffold(
         appBar: AppBar(
-          title: Text("User_Product"),
+          backgroundColor: Colors.black87,
+          title: Padding(
+            padding: const EdgeInsets.only(left: 83.0),
+            child: Text("Car List"),
+          ),
           actions: [
             IconButton(
               onPressed: () {
@@ -29,7 +30,6 @@ class User_product_screen extends StatelessWidget {
             ),
           ],
         ),
-        // drawer: App_Drawer(),
         body: FutureBuilder(
             future: _refreshProd(context),
             builder: (ctx, snapshot) =>
@@ -49,7 +49,7 @@ class User_product_screen extends StatelessWidget {
                                     snap.items[i].Name,
                                     snap.items[i].milege,
                                     snap.items[i].number,
-                                    int.parse(snap.items[i].dof),
+                                    snap.items[i].dof,
                                   ),
                                   Divider(),
                                 ],
