@@ -8,12 +8,25 @@ class User_product_tile extends StatelessWidget {
   final String number;
   final String Name;
   final double milege;
+  final int dof;
   User_product_tile(
     @required this.id,
     @required this.Name,
     @required this.milege,
     @required this.number,
+    @required this.dof,
   );
+  // int currtime = int.parse(DateTime.now().toString());
+  Color _rang() {
+    if ((milege >= 15) && (dof <= 5)) {
+      return Color(0xFF436717);
+    } else if ((milege >= 15) && (dof > 5)) {
+      return Color(0xFFFFC200);
+    } else {
+      return Color(0xFFD52B13);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final scaffold = Scaffold.of(context);
@@ -43,6 +56,7 @@ class User_product_tile extends StatelessWidget {
           ),
         ],
       ),
+      tileColor: _rang(),
       trailing: Container(
         width: 100,
         child: Row(
