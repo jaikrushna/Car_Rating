@@ -12,29 +12,18 @@ class Products with ChangeNotifier {
       Name: 'Mercedez-Benz',
       milege: 15,
       dof: '15-10-2002',
+    ),
+    Product(
+      id: 'C2',
+      number: 'MH16FT7480',
+      Name: 'Skoda-Rapid',
+      milege: 12,
+      dof: '02-10-2002',
     )
   ];
-  // String auth_token;
-  // String user_id;
-  // Products(this.auth_token, this._items, this.user_id);
-  // bool showFavonly = false;
   List<Product> get items {
     return [..._items];
   }
-
-  // List<Product> get itemsfav {
-  //   return _items.where((prodItem) => prodItem.isfav).toList();
-  // }
-
-  // void favselected() {
-  //   showFavonly = true;
-  //   notifyListeners();
-  // }
-  //
-  // void selectedall() {
-  //   showFavonly = false;
-  //   notifyListeners();
-  // }
 
   Product findbyid(String id) {
     return _items.firstWhere((prod) => prod.id == id);
@@ -84,6 +73,7 @@ class Products with ChangeNotifier {
         Name: product.Name,
         milege: product.milege,
         dof: product.dof,
+        number: product.number,
       );
       _items.add(newproduct);
       notifyListeners();

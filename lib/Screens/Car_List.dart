@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:car_rating/Provider/car_provider.dart';
 import 'package:car_rating/Model/car_tile.dart';
 // import 'package:shop_it/Screens/App_Drawer.dart';
-import 'package:car_rating/Screens/Car_info.dart';
 
 class User_product_screen extends StatelessWidget {
   static const routee = '/userproduct';

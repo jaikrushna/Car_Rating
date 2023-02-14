@@ -58,7 +58,7 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
 
   Future<void> _Saveform() async {
     final IsValid = _formkey.currentState.validate();
-    if (IsValid) {
+    if (!IsValid) {
       return;
     }
     _formkey.currentState.save();
@@ -170,6 +170,7 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
                       decoration: InputDecoration(labelText: "Milege(km/l)"),
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.number,
+                      focusNode: _primefocus,
                       onFieldSubmitted: (_) {
                         FocusScope.of(context).requestFocus(_primefocus);
                       },
