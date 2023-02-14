@@ -66,6 +66,12 @@ class User_product_tile extends StatelessWidget {
                   fontSize: 12.0,
                 ),
               ),
+              Text(
+                " Km/L",
+                style: TextStyle(
+                  fontSize: 12.0,
+                ),
+              ),
             ],
           ),
         ],
