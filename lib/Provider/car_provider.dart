@@ -1,48 +1,48 @@
 import 'package:flutter/material.dart';
-import '../Model/Product.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:car_rating/Model/Http.dart';
+import 'package:car_rating/Model/Car.dart';
 
-class Products with ChangeNotifier {
-  List<Product> _items = [];
-  List<Product> get items {
+class Cars with ChangeNotifier {
+  List<Car> _items = [];
+  List<Car> get items {
     return [..._items];
   }
 
-  Product findbyid(String id) {
-    return _items.firstWhere((prod) => prod.id == id);
+  Car findbyid(String id) {
+    return _items.firstWhere((car) => car.id == id);
   }
 
-  Future<void> showproducts() async {
+  Future<void> showcars() async {
     var url =
-        Uri.parse('https://car-rater-default-rtdb.firebaseio.com/product.json');
+        Uri.parse('https://car-rater-default-rtdb.firebaseio.com/cars.json');
     try {
       var response = await http.get(url);
       var extractdata = json.decode(response.body) as Map<String, dynamic>;
       if (extractdata == null) {
         return;
       }
-      final List<Product> _productstoload = [];
-      extractdata.forEach((prodid, prodvalue) {
-        _productstoload.add(Product(
-          id: prodid,
-          number: prodvalue['number'],
-          Name: prodvalue['Name'],
-          mileage: prodvalue['mileage'],
-          dof: prodvalue['dof'],
+      final List<Car> _carstoload = [];
+      extractdata.forEach((carid, carvalue) {
+        _carstoload.add(Car(
+          id: carid,
+          number: carvalue['number'],
+          Name: carvalue['Name'],
+          mileage: carvalue['mileage'],
+          dof: carvalue['dof'],
         ));
       });
-      _items = _productstoload;
+      _items = _carstoload;
       notifyListeners();
     } catch (error) {
       throw (error);
     }
   }
 
-  Future<void> addproduct(Product product) async {
+  Future<void> addcar(Car product) async {
     var url =
-        Uri.parse('https://car-rater-default-rtdb.firebaseio.com/product.json');
+        Uri.parse('https://car-rater-default-rtdb.firebaseio.com/cars.json');
     try {
       var response = await http.post(
         url,
@@ -53,52 +53,52 @@ class Products with ChangeNotifier {
           'number': product.number,
         }),
       );
-      final newproduct = Product(
+      final newcar = Car(
         id: json.decode(response.body)['name'],
         Name: product.Name,
         mileage: product.mileage,
         dof: product.dof,
         number: product.number,
       );
-      _items.add(newproduct);
+      _items.add(newcar);
       notifyListeners();
     } catch (Error) {
       throw (Error);
     }
   }
 
-  Future<void> editproduct(Product editproduct, String id) async {
-    final editid = _items.indexWhere((prod) => prod.id == id);
+  Future<void> editcar(Car editcar, String id) async {
+    final editid = _items.indexWhere((car) => car.id == id);
     if (editid >= 0) {
-      final url = Uri.parse(
-          'https://car-rater-default-rtdb.firebaseio.com/product.json');
+      final url =
+          Uri.parse('https://car-rater-default-rtdb.firebaseio.com/cars.json');
       await http.patch(url,
           body: json.encode({
-            'Name': editproduct.Name,
-            'mileage': editproduct.mileage,
-            'dof': editproduct.dof,
-            'car_id': editproduct.id,
+            'Name': editcar.Name,
+            'mileage': editcar.mileage,
+            'dof': editcar.dof,
+            'car_id': editcar.id,
           }));
-      _items[editid] = editproduct;
+      _items[editid] = editcar;
       notifyListeners();
     } else {
       print(".....");
     }
   }
 
-  Future<void> Deleteprod(String id) async {
+  Future<void> Deletecar(String id) async {
     final url = Uri.parse(
-        'https://car-rater-default-rtdb.firebaseio.com/product/$id.json');
-    final _prodindex = _items.indexWhere((prod) => prod.id == id);
-    Product _prodindexitem = _items[_prodindex];
+        'https://car-rater-default-rtdb.firebaseio.com/cars/$id.json');
+    final _carindex = _items.indexWhere((car) => car.id == id);
+    Car _carindexitem = _items[_carindex];
     var response = await http.delete(url);
-    _items.removeAt(_prodindex);
+    _items.removeAt(_carindex);
     notifyListeners();
     if (response.statusCode >= 400) {
-      _items.insert(_prodindex, _prodindexitem);
+      _items.insert(_carindex, _carindexitem);
       notifyListeners();
       throw HttpRequest('Could not delete product');
     }
-    _prodindexitem = null;
+    _carindexitem = null;
   }
 }

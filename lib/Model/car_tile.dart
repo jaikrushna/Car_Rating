@@ -76,8 +76,7 @@ class Car_tile extends StatelessWidget {
           children: [
             IconButton(
               onPressed: () {
-                Navigator.of(context)
-                    .pushNamed(Edit_User_Input.routee, arguments: id);
+                Navigator.of(context).pushNamed(Car_Info.routee, arguments: id);
               },
               icon: const Icon(Icons.edit_rounded),
               color: Theme.of(context).primaryColor,
@@ -85,8 +84,7 @@ class Car_tile extends StatelessWidget {
             IconButton(
               onPressed: () async {
                 try {
-                  await Provider.of<Products>(context, listen: false)
-                      .Deleteprod(id);
+                  await Provider.of<Cars>(context, listen: false).Deletecar(id);
                   const SnackBar(content: Text('Deleting Successfull!'));
                 } catch (error) {
                   const SnackBar(content: Text('Deleting Failed!'));

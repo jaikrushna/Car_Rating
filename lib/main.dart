@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => Products()),
+        ChangeNotifierProvider(create: (context) => Cars()),
       ],
       child: MaterialApp(
         title: 'Car_Rating',
@@ -25,8 +25,8 @@ class MyApp extends StatelessWidget {
         ),
         home: const Open(),
         routes: {
-          User_product_screen.routee: (ctx) => User_product_screen(),
-          Edit_User_Input.routee: (ctx) => Edit_User_Input(),
+          Car_List.routee: (ctx) => Car_List(),
+          Car_Info.routee: (ctx) => Car_Info(),
           Open.routee: (ctx) => const Open(),
         },
       ),
@@ -46,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Edit_User_Input(),
+      body: Car_Info(),
     );
   }
 }

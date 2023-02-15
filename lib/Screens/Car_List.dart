@@ -4,16 +4,16 @@ import 'package:provider/provider.dart';
 import 'package:car_rating/Provider/car_provider.dart';
 import 'package:car_rating/Model/car_tile.dart';
 
-class User_product_screen extends StatelessWidget {
-  static const routee = '/userproduct';
-  Future<void> _refreshProd(BuildContext context) async {
-    await Provider.of<Products>(context, listen: false).showproducts();
+class Car_List extends StatelessWidget {
+  static const routee = '/carlist';
+  Future<void> _refreshCar(BuildContext context) async {
+    await Provider.of<Cars>(context, listen: false).showcars();
   }
 
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
-      onRefresh: () => _refreshProd(context),
+      onRefresh: () => _refreshCar(context),
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.black87,
@@ -31,14 +31,14 @@ class User_product_screen extends StatelessWidget {
           ],
         ),
         body: FutureBuilder(
-            future: _refreshProd(context),
+            future: _refreshCar(context),
             builder: (ctx, snapshot) =>
                 snapshot.connectionState == ConnectionState.waiting
                     ? const Center(
                         child: CircularProgressIndicator(),
                       )
                     : RefreshIndicator(
-                        child: Consumer<Products>(
+                        child: Consumer<Cars>(
                           builder: (ctx, snap, _) => Padding(
                             padding: const EdgeInsets.all(8),
                             child: ListView.builder(
@@ -58,7 +58,7 @@ class User_product_screen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        onRefresh: () => _refreshProd(context),
+                        onRefresh: () => _refreshCar(context),
                       )),
       ),
     );

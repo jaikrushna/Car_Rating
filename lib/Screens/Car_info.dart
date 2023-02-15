@@ -2,22 +2,21 @@ import 'package:car_rating/Screens/Car_List.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:car_rating/Provider/car_provider.dart';
-import 'package:car_rating/Model/Product.dart';
 import 'package:car_rating/Provider/Constant.dart';
+import 'package:car_rating/Model/Car.dart';
 
-class Edit_User_Input extends StatefulWidget {
+class Car_Info extends StatefulWidget {
   static const routee = '/Editee';
   @override
-  _Edit_User_InputState createState() => _Edit_User_InputState();
+  _Car_InfoState createState() => _Car_InfoState();
 }
 
-class _Edit_User_InputState extends State<Edit_User_Input> {
+class _Car_InfoState extends State<Car_Info> {
   final _formkey = GlobalKey<FormState>();
   final _primefocus = FocusNode();
   final _primefocus2 = FocusNode();
   final _primefocus3 = FocusNode();
-  var _newproduct =
-      Product(id: null, Name: '', mileage: 0.0, dof: 0, number: '');
+  var _newcar = Car(id: null, Name: '', mileage: 0.0, dof: 0, number: '');
   @override
   var _initValues = {
     'Name': '',
@@ -33,13 +32,12 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
     if (_isintistate) {
       final editid = ModalRoute.of(context).settings.arguments as String;
       if (editid != null) {
-        _newproduct =
-            Provider.of<Products>(context, listen: false).findbyid(editid);
+        _newcar = Provider.of<Cars>(context, listen: false).findbyid(editid);
         _initValues = {
-          'Name': _newproduct.Name,
-          'dof': _newproduct.dof.toString(),
-          'mileage': _newproduct.mileage.toString(),
-          'number': _newproduct.number,
+          'Name': _newcar.Name,
+          'dof': _newcar.dof.toString(),
+          'mileage': _newcar.mileage.toString(),
+          'number': _newcar.number,
         };
       }
     }
@@ -65,13 +63,12 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
     setState(() {
       _isloading = true;
     });
-    if (_newproduct.id != null) {
-      await Provider.of<Products>(context, listen: false)
-          .editproduct(_newproduct, _newproduct.id);
+    if (_newcar.id != null) {
+      await Provider.of<Cars>(context, listen: false)
+          .editcar(_newcar, _newcar.id);
     } else {
       try {
-        await Provider.of<Products>(context, listen: false)
-            .addproduct(_newproduct);
+        await Provider.of<Cars>(context, listen: false).addcar(_newcar);
       } catch (error) {
         await showDialog(
             context: context,
@@ -81,7 +78,7 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
                   actions: <Widget>[
                     TextButton(
                       onPressed: () {
-                        Navigator.of(ctx).pushNamed(User_product_screen.routee);
+                        Navigator.of(ctx).pushNamed(Car_List.routee);
                       },
                       child: Text("Okay"),
                     ),
@@ -93,7 +90,7 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
     setState(() {
       _isloading = false;
     });
-    Navigator.of(context).pushNamed(User_product_screen.routee);
+    Navigator.of(context).pushNamed(Car_List.routee);
   }
 
   @override
@@ -137,12 +134,12 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
                         return null;
                       },
                       onSaved: (value) {
-                        _newproduct = Product(
-                          id: _newproduct.id,
+                        _newcar = Car(
+                          id: _newcar.id,
                           Name: value,
-                          mileage: _newproduct.mileage,
-                          dof: _newproduct.dof,
-                          number: _newproduct.number,
+                          mileage: _newcar.mileage,
+                          dof: _newcar.dof,
+                          number: _newcar.number,
                         );
                       },
                     ),
@@ -165,12 +162,12 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
                         return null;
                       },
                       onSaved: (value) {
-                        _newproduct = Product(
-                          id: _newproduct.id,
-                          Name: _newproduct.Name,
-                          mileage: _newproduct.mileage,
+                        _newcar = Car(
+                          id: _newcar.id,
+                          Name: _newcar.Name,
+                          mileage: _newcar.mileage,
                           dof: int.parse(value),
-                          number: _newproduct.number,
+                          number: _newcar.number,
                         );
                       },
                     ),
@@ -200,12 +197,12 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
                         return null;
                       },
                       onSaved: (value) {
-                        _newproduct = Product(
-                          id: _newproduct.id,
-                          Name: _newproduct.Name,
+                        _newcar = Car(
+                          id: _newcar.id,
+                          Name: _newcar.Name,
                           mileage: double.parse(value),
-                          dof: _newproduct.dof,
-                          number: _newproduct.number,
+                          dof: _newcar.dof,
+                          number: _newcar.number,
                         );
                       },
                     ),
@@ -227,11 +224,11 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
                         return null;
                       },
                       onSaved: (value) {
-                        _newproduct = Product(
-                          id: _newproduct.id,
-                          Name: _newproduct.Name,
-                          mileage: _newproduct.mileage,
-                          dof: _newproduct.dof,
+                        _newcar = Car(
+                          id: _newcar.id,
+                          Name: _newcar.Name,
+                          mileage: _newcar.mileage,
+                          dof: _newcar.dof,
                           number: value,
                         );
                       },

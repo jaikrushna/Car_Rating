@@ -29,15 +29,15 @@ class Open extends StatelessWidget {
               padding_button(
                   colour: Colors.black,
                   OnPressed: () =>
-                      Navigator.of(context).pushNamed(Edit_User_Input.routee),
+                      Navigator.of(context).pushNamed(Car_Info.routee),
                   Title: "ADD CAR"),
               const SizedBox(
                 width: 50,
               ),
               padding_button(
                   colour: Colors.black,
-                  OnPressed: () => Navigator.of(context)
-                      .pushNamed(User_product_screen.routee),
+                  OnPressed: () =>
+                      Navigator.of(context).pushNamed(Car_List.routee),
                   Title: "CAR LIST"),
             ],
           )
