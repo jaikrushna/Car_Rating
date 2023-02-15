@@ -87,8 +87,8 @@ class Products with ChangeNotifier {
   }
 
   Future<void> Deleteprod(String id) async {
-    final url =
-        Uri.parse('https://car-rater-default-rtdb.firebaseio.com/product.json');
+    final url = Uri.parse(
+        'https://car-rater-default-rtdb.firebaseio.com/product/$id.json');
     final _prodindex = _items.indexWhere((prod) => prod.id == id);
     Product _prodindexitem = _items[_prodindex];
     var response = await http.delete(url);
