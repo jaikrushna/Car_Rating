@@ -70,8 +70,8 @@ class Cars with ChangeNotifier {
   Future<void> editcar(Car editcar, String id) async {
     final editid = _items.indexWhere((car) => car.id == id);
     if (editid >= 0) {
-      final url =
-          Uri.parse('https://car-rater-default-rtdb.firebaseio.com/cars.json');
+      final url = Uri.parse(
+          'https://car-rater-default-rtdb.firebaseio.com/cars/$id.json');
       await http.patch(url,
           body: json.encode({
             'Name': editcar.Name,
