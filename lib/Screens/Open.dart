@@ -4,7 +4,7 @@ import 'package:car_rating/Screens/Car_info.dart';
 import 'package:car_rating/Screens/Car_List.dart';
 
 class Open extends StatelessWidget {
-  const Open() : super();
+  const Open({Key key}) : super(key: key);
   static const routee = '/Open';
 
   @override
@@ -15,12 +15,12 @@ class Open extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-            child: Container(
+            child: SizedBox(
               height: 300.0,
               child: Image.asset('assets/car.png'),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20.0,
           ),
           Row(
@@ -31,7 +31,7 @@ class Open extends StatelessWidget {
                   OnPressed: () =>
                       Navigator.of(context).pushNamed(Edit_User_Input.routee),
                   Title: "ADD CAR"),
-              SizedBox(
+              const SizedBox(
                 width: 50,
               ),
               padding_button(

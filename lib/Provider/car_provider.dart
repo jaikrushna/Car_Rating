@@ -14,14 +14,14 @@ class Products with ChangeNotifier {
     return _items.firstWhere((prod) => prod.id == id);
   }
 
-  Future<void> showproducts([Showfilterstatus = false]) async {
+  Future<void> showproducts() async {
     var url =
         Uri.parse('https://car-rater-default-rtdb.firebaseio.com/product.json');
     try {
       var response = await http.get(url);
       var extractdata = json.decode(response.body) as Map<String, dynamic>;
       if (extractdata == null) {
-        return null;
+        return;
       }
       final List<Product> _productstoload = [];
       extractdata.forEach((prodid, prodvalue) {
@@ -29,7 +29,7 @@ class Products with ChangeNotifier {
           id: prodid,
           number: prodvalue['number'],
           Name: prodvalue['Name'],
-          milege: prodvalue['milege'],
+          mileage: prodvalue['mileage'],
           dof: prodvalue['dof'],
         ));
       });
@@ -48,7 +48,7 @@ class Products with ChangeNotifier {
         url,
         body: json.encode({
           'Name': product.Name,
-          'milege': product.milege,
+          'mileage': product.mileage,
           'dof': product.dof,
           'number': product.number,
         }),
@@ -56,7 +56,7 @@ class Products with ChangeNotifier {
       final newproduct = Product(
         id: json.decode(response.body)['name'],
         Name: product.Name,
-        milege: product.milege,
+        mileage: product.mileage,
         dof: product.dof,
         number: product.number,
       );
@@ -75,7 +75,7 @@ class Products with ChangeNotifier {
       await http.patch(url,
           body: json.encode({
             'Name': editproduct.Name,
-            'milege': editproduct.milege,
+            'mileage': editproduct.mileage,
             'dof': editproduct.dof,
             'car_id': editproduct.id,
           }));

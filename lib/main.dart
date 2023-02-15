@@ -6,10 +6,12 @@ import 'Provider/car_provider.dart';
 import 'package:car_rating/Screens/Open.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -21,11 +23,11 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: Colors.black,
         ),
-        home: Open(),
+        home: const Open(),
         routes: {
           User_product_screen.routee: (ctx) => User_product_screen(),
           Edit_User_Input.routee: (ctx) => Edit_User_Input(),
-          Open.routee: (ctx) => Open(),
+          Open.routee: (ctx) => const Open(),
         },
       ),
     );
@@ -33,7 +35,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({this.title});
+  const MyHomePage({Key key, this.title}) : super(key: key);
   final String title;
 
   @override

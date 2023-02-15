@@ -7,7 +7,7 @@ import 'package:car_rating/Model/car_tile.dart';
 class User_product_screen extends StatelessWidget {
   static const routee = '/userproduct';
   Future<void> _refreshProd(BuildContext context) async {
-    await Provider.of<Products>(context, listen: false).showproducts(true);
+    await Provider.of<Products>(context, listen: false).showproducts();
   }
 
   @override
@@ -17,8 +17,8 @@ class User_product_screen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.black87,
-          title: Padding(
-            padding: const EdgeInsets.only(left: 83.0),
+          title: const Padding(
+            padding: EdgeInsets.only(left: 83.0),
             child: Text("Car List"),
           ),
           actions: [
@@ -26,7 +26,7 @@ class User_product_screen extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).pushNamed('/Editee');
               },
-              icon: Icon(Icons.add_circle_rounded),
+              icon: const Icon(Icons.add_circle_rounded),
             ),
           ],
         ),
@@ -34,24 +34,24 @@ class User_product_screen extends StatelessWidget {
             future: _refreshProd(context),
             builder: (ctx, snapshot) =>
                 snapshot.connectionState == ConnectionState.waiting
-                    ? Center(
+                    ? const Center(
                         child: CircularProgressIndicator(),
                       )
                     : RefreshIndicator(
                         child: Consumer<Products>(
                           builder: (ctx, snap, _) => Padding(
-                            padding: EdgeInsets.all(8),
+                            padding: const EdgeInsets.all(8),
                             child: ListView.builder(
                               itemBuilder: (_, i) => Column(
                                 children: [
-                                  User_product_tile(
+                                  Car_tile(
                                     snap.items[i].id,
                                     snap.items[i].Name,
-                                    snap.items[i].milege,
+                                    snap.items[i].mileage,
                                     snap.items[i].number,
                                     snap.items[i].dof,
                                   ),
-                                  Divider(),
+                                  const Divider(),
                                 ],
                               ),
                               itemCount: snap.items.length,

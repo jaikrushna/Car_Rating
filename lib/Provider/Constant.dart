@@ -1,6 +1,8 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
-InputDecoration kInputDecor = InputDecoration(
+InputDecoration kInputDecor = const InputDecoration(
   labelText: 'Text',
   hintText: 'Enter your text',
   hintStyle: TextStyle(color: Colors.black38),

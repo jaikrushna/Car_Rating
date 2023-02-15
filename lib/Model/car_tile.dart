@@ -1,55 +1,48 @@
+// ignore_for_file: camel_case_types, non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:car_rating/Screens/Car_info.dart';
 import 'package:provider/provider.dart';
 import 'package:car_rating/Provider/car_provider.dart';
 
-class User_product_tile extends StatelessWidget {
+class Car_tile extends StatelessWidget {
   final String id;
   final String number;
   final String Name;
-  final double milege;
+  final double mileage;
   final int dof;
-  User_product_tile(
-    @required this.id,
-    @required this.Name,
-    @required this.milege,
-    @required this.number,
-    @required this.dof,
-  );
+  const Car_tile(this.id, this.Name, this.mileage, this.number, this.dof,
+      {Key key})
+      : super(key: key);
   Color _rang() {
-    if ((milege >= 15) && (dof <= 5)) {
-      return Color(0x889EF29C);
-    } else if ((milege >= 15) && (dof > 5)) {
-      return Color(0x88F2DA88);
+    if ((mileage >= 15) && (dof <= 5)) {
+      return const Color(0x889EF29C);
+    } else if ((mileage >= 15) && (dof > 5)) {
+      return const Color(0x88F2DA88);
     } else {
-      return Color(0x66CB2727);
+      return const Color(0x66CB2727);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    // final scaffold = Scaffold.of(context);
     return ListTile(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       title: Text(
         number,
-        style: TextStyle(
+        style: const TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: 16,
         ),
       ),
-      subtitle:
-          // Padding(
-          // padding: const EdgeInsets.fromLTRB(0.0, 1.0, 50.0, 0.2),
-          // child:
-          Column(
+      subtitle: Column(
         children: [
           Row(
             children: [
-              Text("Model: "),
+              const Text("Model: "),
               Text(
                 Name,
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 12.0,
                 ),
@@ -58,15 +51,15 @@ class User_product_tile extends StatelessWidget {
           ),
           Row(
             children: [
-              Text("Milege:"),
+              const Text("mileage:"),
               Text(
-                milege.toString(),
-                style: TextStyle(
+                mileage.toString(),
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 12.0,
                 ),
               ),
-              Text(
+              const Text(
                 " Km/L",
                 style: TextStyle(
                   fontSize: 12.0,
@@ -76,9 +69,8 @@ class User_product_tile extends StatelessWidget {
           ),
         ],
       ),
-      // ),
       tileColor: _rang(),
-      trailing: Container(
+      trailing: SizedBox(
         width: 100,
         child: Row(
           children: [
@@ -87,7 +79,7 @@ class User_product_tile extends StatelessWidget {
                 Navigator.of(context)
                     .pushNamed(Edit_User_Input.routee, arguments: id);
               },
-              icon: Icon(Icons.edit_rounded),
+              icon: const Icon(Icons.edit_rounded),
               color: Theme.of(context).primaryColor,
             ),
             IconButton(
@@ -95,12 +87,12 @@ class User_product_tile extends StatelessWidget {
                 try {
                   await Provider.of<Products>(context, listen: false)
                       .Deleteprod(id);
-                  SnackBar(content: Text('Deleting Successfull!'));
+                  const SnackBar(content: Text('Deleting Successfull!'));
                 } catch (error) {
-                  SnackBar(content: Text('Deleting Failed!'));
+                  const SnackBar(content: Text('Deleting Failed!'));
                 }
               },
-              icon: Icon(Icons.delete),
+              icon: const Icon(Icons.delete),
               color: Theme.of(context).errorColor,
             ),
           ],

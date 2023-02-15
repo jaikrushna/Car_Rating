@@ -1,5 +1,4 @@
 import 'package:car_rating/Screens/Car_List.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:car_rating/Provider/car_provider.dart';
@@ -18,13 +17,13 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
   final _primefocus2 = FocusNode();
   final _primefocus3 = FocusNode();
   var _newproduct =
-      Product(id: null, Name: '', milege: 0.0, dof: 0, number: '');
+      Product(id: null, Name: '', mileage: 0.0, dof: 0, number: '');
   @override
   var _initValues = {
     'Name': '',
     'dof': '',
     'number': '',
-    'milege': '',
+    'mileage': '',
   };
 
   var _isintistate = true;
@@ -39,7 +38,7 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
         _initValues = {
           'Name': _newproduct.Name,
           'dof': _newproduct.dof.toString(),
-          'milege': _newproduct.milege.toString(),
+          'mileage': _newproduct.mileage.toString(),
           'number': _newproduct.number,
         };
       }
@@ -141,7 +140,7 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
                         _newproduct = Product(
                           id: _newproduct.id,
                           Name: value,
-                          milege: _newproduct.milege,
+                          mileage: _newproduct.mileage,
                           dof: _newproduct.dof,
                           number: _newproduct.number,
                         );
@@ -169,7 +168,7 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
                         _newproduct = Product(
                           id: _newproduct.id,
                           Name: _newproduct.Name,
-                          milege: _newproduct.milege,
+                          mileage: _newproduct.mileage,
                           dof: int.parse(value),
                           number: _newproduct.number,
                         );
@@ -179,9 +178,9 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
                       height: 15.0,
                     ),
                     TextFormField(
-                      initialValue: _initValues['milege'],
+                      initialValue: _initValues['mileage'],
                       decoration: kInputDecor.copyWith(
-                          hintText: '18.0', labelText: 'Milege(km/l)'),
+                          hintText: '18.0', labelText: 'mileage(km/l)'),
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.number,
                       focusNode: _primefocus,
@@ -190,10 +189,10 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
                       },
                       validator: (value) {
                         if (value.isEmpty) {
-                          return "Please Enter a Milege";
+                          return "Please Enter a mileage";
                         }
                         if (double.tryParse(value) == null) {
-                          return "Please Enter a valid milege";
+                          return "Please Enter a valid mileage";
                         }
                         if (double.parse(value) < 0) {
                           return "Please Enter a real value";
@@ -204,7 +203,7 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
                         _newproduct = Product(
                           id: _newproduct.id,
                           Name: _newproduct.Name,
-                          milege: double.parse(value),
+                          mileage: double.parse(value),
                           dof: _newproduct.dof,
                           number: _newproduct.number,
                         );
@@ -231,7 +230,7 @@ class _Edit_User_InputState extends State<Edit_User_Input> {
                         _newproduct = Product(
                           id: _newproduct.id,
                           Name: _newproduct.Name,
-                          milege: _newproduct.milege,
+                          mileage: _newproduct.mileage,
                           dof: _newproduct.dof,
                           number: value,
                         );
